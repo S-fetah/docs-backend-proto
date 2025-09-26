@@ -15,3 +15,14 @@ export const errorHandler = (
     message: err.message || "Internal Server Error",
   });
 };
+
+export const invalidRoutesHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  res.status(404).json({
+    error: "Route not found",
+    path: req.originalUrl,
+  });
+};
