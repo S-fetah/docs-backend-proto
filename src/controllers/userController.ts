@@ -15,7 +15,7 @@ export const addUser = async (
       VALUES ($1, $2, $3, $4) RETURNING *`,
       [data.firstName, data.lastName, data.email, data.password]
     );
-    if (added) res.status(201).json(data);
+    if (added.rowCount ?? 0) res.status(201).json(added.rows[0]);
   } catch (error) {
     res.status(500).json(error);
   }
